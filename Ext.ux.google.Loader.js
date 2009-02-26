@@ -1,12 +1,16 @@
 /*
  * Ext.ux.google.Loader
  *
- * Project Home: 
- * API Documentation: 
- * Live Demo: 
- * 
- * Released under the MIT license 
- * Copyright(c) 2009, Kyte Project
+ * Project Home: http://code.google.com/p/extuxgoogle/ 
+ * API Documentation: http://extuxgoogle.googlecode.com/svn/trunk/docs/index.html 
+ *
+ * copyright   Copyright 2009 Yuki Naotori
+ * license     GNU General Public License version 3
+ *
+ * The content of this file is an implementation of Ext JS version 2.
+ * Thus this is subject to the Open Source License of Ext JS
+ * http://extjs.com/license, and is licensed under GNU General Public
+ * License version 3 http://www.gnu.org/copyleft/gpl.html
  */
 
 Ext.namespace('Ext.ux');
@@ -23,7 +27,7 @@ Ext.namespace('Ext.ux.google');
  * <p>Since Google AJAX API loading is asynchronous process (and takes good amount of time depending on environment),
  * object/method which uses this class needs to make sure to implement an event which notifies the readiness of api
  * and an alternative process while the api is not available</p>
- * @author Kyte Project
+ * @author Yuki Naotori
  * @version 0.1
  */
 Ext.ux.google.Loader = function(){

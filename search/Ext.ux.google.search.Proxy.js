@@ -1,12 +1,16 @@
 /*
  * Ext.ux.google.search.Proxy
  *
- * Project Home: 
- * API Documentation:
- * Live Demo: 
- * 
- * Released under the MIT license 
- * Copyright(c) 2009, Kyte Project
+ * Project Home: http://code.google.com/p/extuxgoogle/ 
+ * API Documentation: http://extuxgoogle.googlecode.com/svn/trunk/docs/index.html 
+ *
+ * copyright   Copyright 2009 Yuki Naotori
+ * license     GNU General Public License version 3
+ *
+ * The content of this file is an implementation of Ext JS version 2.
+ * Thus this is subject to the Open Source License of Ext JS
+ * http://extjs.com/license, and is licensed under GNU General Public
+ * License version 3 http://www.gnu.org/copyleft/gpl.html
  */
 
 Ext.namespace('Ext.ux');
@@ -25,7 +29,7 @@ Ext.namespace('Ext.ux.google.search');
  * User only needs to specify his API key in config options.</p>
  * <p>If Google Saerch API is dynamically loaded, make sure to check {@link #isReady isReady()} method
  * or "searchapiinitialized" event before start interacting with proxy</p>
- * @author Kyte Project
+ * @author Yuki Naotori
  * @version 0.1
  */
 Ext.ux.google.search.Proxy = Ext.extend(Ext.data.DataProxy, function(){
