@@ -1,0 +1,70 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.direct.Provider"></div>/**
+ * @class Ext.direct.Provider
+ * @extends Ext.util.Observable
+ * @abstract
+ * Provider is an abstract class meant to be extended.
+ */
+Ext.direct.Provider = Ext.extend(Ext.util.Observable, {    
+    <div id="cfg-Ext.direct.Provider-priority"></div>/**
+     * @cfg {Number} priority
+     * Priority of the request. Lower is higher priority, 0 means "duplex", aka always on.
+     * All Providers default to 1 except for PollingProvider which defaults to 3.
+     */    
+    priority: 1,
+    
+    // private
+    constructor : function(config){
+        Ext.apply(this, config);
+        this.addEvents(
+            <div id="event-Ext.direct.Provider-connect"></div>/**
+             * @event connect
+             * Fires when the Provider connects to the server-side
+             */            
+            'connect',
+            <div id="event-Ext.direct.Provider-disconnect"></div>/**
+             * @event disconnect
+             * Fires when the Provider disconnects from the server-side
+             */            
+            'disconnect',
+            <div id="event-Ext.direct.Provider-data"></div>/**
+             * @event data
+             * Fires when the Provider receives data from the server-side
+             */            
+            'data',
+            <div id="event-Ext.direct.Provider-exception"></div>/**
+             * @event exception
+             * Fires when the Provider receives an exception from the server-side
+             */                        
+            'exception'
+        );
+        Ext.direct.Provider.superclass.constructor.call(this, config);
+    },
+
+    <div id="method-Ext.direct.Provider-isConnected"></div>/**
+     * Returns whether or not the server-side is currently connected.
+     * Abstract method for subclasses to implement.
+     */
+    isConnected: function(){
+        return false;
+    },
+
+    <div id="prop-Ext.direct.Provider-connect"></div>/**
+     * Abstract methods for subclasses to implement.
+     */
+    connect: Ext.emptyFn,
+    
+    <div id="prop-Ext.direct.Provider-disconnect"></div>/**
+     * Abstract methods for subclasses to implement.
+     */
+    disconnect: Ext.emptyFn
+});
+</pre>    
+</body>
+</html>

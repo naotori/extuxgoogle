@@ -1,0 +1,23 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js">Ext.data.XmlStore = Ext.extend(Ext.data.Store, {
+    constructor: function(config){
+        Ext.data.XmlStore.superclass.constructor.call(this, Ext.apply(config, {
+            reader: new Ext.data.XmlReader(config)
+        }));
+    }
+    <div id="cfg-Ext.data.XmlReader-reader"></div>/**
+     * @cfg {Ext.data.DataReader} reader @hide
+     */
+    <div id="cfg-Ext.data.XmlReader-proxy"></div>/**
+     * @cfg {Ext.data.DataProxy} proxy @hide
+     */
+});
+Ext.reg('xmlstore', Ext.data.XmlStore);</pre>    
+</body>
+</html>

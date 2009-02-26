@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>The source code</title>
+    <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+</head>
+<body  onload="prettyPrint();">
+    <pre class="prettyprint lang-js"><div id="cls-Ext.data.DataProxy"></div>/**
+ * @class Ext.data.DataProxy
+ * @extends Ext.util.Observable
+ * This class is an abstract base class for implementations which provide retrieval of
+ * unformatted data objects.<br>
+ * <p>
+ * DataProxy implementations are usually used in conjunction with an implementation of Ext.data.DataReader
+ * (of the appropriate type which knows how to parse the data object) to provide a block of
+ * {@link Ext.data.Records} to an {@link Ext.data.Store}.<br>
+ * <p>
+ * Custom implementations must implement the load method as described in
+ * {@link Ext.data.HttpProxy#load}.
+ */
+Ext.data.DataProxy = function(){
+    this.addEvents(
+        <div id="event-Ext.data.DataProxy-beforeload"></div>/**
+         * @event beforeload
+         * Fires before a network request is made to retrieve a data object.
+         * @param {Object} this
+         * @param {Object} params The params object passed to the {@link #load} function
+         */
+        'beforeload',
+        <div id="event-Ext.data.DataProxy-load"></div>/**
+         * @event load
+         * Fires before the load method's callback is called.
+         * @param {Object} this
+         * @param {Object} o The data object
+         * @param {Object} arg The callback's arg object passed to the {@link #load} function
+         */
+        'load'
+    );
+    Ext.data.DataProxy.superclass.constructor.call(this);
+};
+
+Ext.extend(Ext.data.DataProxy, Ext.util.Observable);</pre>    
+</body>
+</html>
