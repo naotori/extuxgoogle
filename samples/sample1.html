@@ -4,9 +4,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Sample1: Ext.ux.google.map.View / Ext.ux.google.search.*</title>
-		<link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-2.2.1/resources/css/ext-all.css" />
-		<script type="text/javascript" src="http://extjs.cachefly.net/ext-2.2.1/adapter/ext/ext-base.js"></script>
-		<script type="text/javascript" src="http://extjs.cachefly.net/ext-2.2.1/ext-all.js"> </script>
+    <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-2.2.1/resources/css/ext-all.css" />
+    <script type="text/javascript" src="http://extjs.cachefly.net/ext-2.2.1/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="http://extjs.cachefly.net/ext-2.2.1/ext-all.js"> </script>
     <script type="text/javascript" src="../Ext.ux.google.Loader.js"></script>
 
     <script type="text/javascript" src="../search/Ext.ux.google.search.Proxy.js"></script>
@@ -16,124 +16,124 @@
     <script type="text/javascript" src="../map/Ext.ux.google.map.View.js"></script>
 
     <script type="text/javascript">
-			Ext.onReady(function(){
-				var tpl = new Ext.XTemplate('<h3 class="selector">{title}</h3>');
+      Ext.onReady(function(){
+        var tpl = new Ext.XTemplate('<h3 class="selector">{title}</h3>');
 
-				var store = new Ext.ux.google.search.Store({
-					proxy: {
-						// replace with proper api key
-						apiKey: 'ABQIAAAA3HEaipgCJKasbKv8S1gdbBQRwYGrJs7PTc23wXYGvCkgV6rZmhSdnrJh9Xe77AdhJyXWHiwWb8t7pA',
-						searchConfig: {
-							searcher: ['local'],
-							active: 'local',
-							size: 'large'
-						}
-					}
-				});
+        var store = new Ext.ux.google.search.Store({
+          proxy: {
+            // replace with proper api key
+            apiKey: 'ABQIAAAA3HEaipgCJKasbKv8S1gdbBQRwYGrJs7PTc23wXYGvCkgV6rZmhSdnrJh9Xe77AdhJyXWHiwWb8t7pA',
+            searchConfig: {
+              searcher: ['local'],
+              active: 'local',
+              size: 'large'
+            }
+          }
+        });
 
-				var doSearch = function(query){
-					if(!query) return;
+        var doSearch = function(query){
+          if(!query) return;
 
-					var map = Ext.getCmp('mpnl').map;
-					store.getActiveSearcher().setCenterPoint(map);
-					store.load({
-						params: {
-							query: query,
-							start: 0
-						}
-					});
-				};
+          var map = Ext.getCmp('mpnl').map;
+          store.getActiveSearcher().setCenterPoint(map);
+          store.load({
+            params: {
+              query: query,
+              start: 0
+            }
+          });
+        };
 
-				new Ext.Viewport({
-					layout: 'border',
-					items: [{
-						region: 'north',
-						height: 40,
-						split: true,
-						layout: 'table',
-						layoutConfig: {
-							columns: 2
-						},
-						items: [{
-							xtype: 'textfield',
-							id: 'querystr',
-							enableKeyEvents: true,
-							listeners: {
-								'keypress': function(t, e){
-									if(e.getKey() == 13)
-										doSearch(Ext.getCmp('querystr').getValue());
-								}
-							}
-						},{
-							xtype: 'button',	
-							text: 'search',
-							handler: function(){
-								doSearch(Ext.getCmp('querystr').getValue());
-							}
-						}]
-					},{
-						region: 'center',
-						layout: 'border',
-						items:[{
-							region: 'center',	
-							items: {
-								xtype: 'gmapview',
-								store: store,
-								// replace with proper api key
-								apiKey: 'ABQIAAAA3HEaipgCJKasbKv8S1gdbBQRwYGrJs7PTc23wXYGvCkgV6rZmhSdnrJh9Xe77AdhJyXWHiwWb8t7pA',
-								id: 'mpnl',
-								tpl: tpl,
-								mapConfig: {
-									lat:35.3162461234567,
-									lng: 139.4199371234567,
-									zoom:14,
-									geoip: true,
-									googlebar: true
-								},
-								itemSelector: 'h3.selector'
-							}
-						},{
-							region: 'west',
-							width: 400,
-							split: true,
-							xtype: 'grid',
-							viewConfig: {
-								forceFit: true
-							},
-							store: store,
-							columns: [
-								{header: 'Title', dataIndex: 'title'},
-								{header: 'Latitude', dataIndex: 'lat'},
-								{header: 'Longitude', dataIndex: 'lng'}
-							],
-							sm: new Ext.grid.RowSelectionModel({
-								singleSelect: true,
-								listeners: {
-									'rowselect': {
-										fn: function(t, i, r){
-											var map = Ext.getCmp('mpnl');
-											var mrk = map.getMarkerById(r.id);
-											map.openInfoWindow(mrk);
-										}
-									}
-								}
-							}),
-							bbar: new Ext.PagingToolbar({
-								store: store,
-								id: 'ptbar',
-								pageSize: store.getResultSetSize()
-							})
-						}]
-					}]
-				});
-			
-				if(!store.isReady()){
-					store.on('searchapiinitialized',function(){
-						Ext.getCmp('ptbar').pageSize = store.getResultSetSize();
-					});
-				}
-			});	
-		</script>
+        new Ext.Viewport({
+          layout: 'border',
+          items: [{
+            region: 'north',
+            height: 40,
+            split: true,
+            layout: 'table',
+            layoutConfig: {
+              columns: 2
+            },
+            items: [{
+              xtype: 'textfield',
+              id: 'querystr',
+              enableKeyEvents: true,
+              listeners: {
+                'keypress': function(t, e){
+                  if(e.getKey() == 13)
+                    doSearch(Ext.getCmp('querystr').getValue());
+                }
+              }
+            },{
+              xtype: 'button',  
+              text: 'search',
+              handler: function(){
+                doSearch(Ext.getCmp('querystr').getValue());
+              }
+            }]
+          },{
+            region: 'center',
+            layout: 'border',
+            items:[{
+              region: 'center',  
+              items: {
+                xtype: 'gmapview',
+                store: store,
+                // replace with proper api key
+                apiKey: 'ABQIAAAA3HEaipgCJKasbKv8S1gdbBQRwYGrJs7PTc23wXYGvCkgV6rZmhSdnrJh9Xe77AdhJyXWHiwWb8t7pA',
+                id: 'mpnl',
+                tpl: tpl,
+                mapConfig: {
+                  lat:35.3162461234567,
+                  lng: 139.4199371234567,
+                  zoom:14,
+                  geoip: true,
+                  googlebar: true
+                },
+                itemSelector: 'h3.selector'
+              }
+            },{
+              region: 'west',
+              width: 400,
+              split: true,
+              xtype: 'grid',
+              viewConfig: {
+                forceFit: true
+              },
+              store: store,
+              columns: [
+                {header: 'Title', dataIndex: 'title'},
+                {header: 'Latitude', dataIndex: 'lat'},
+                {header: 'Longitude', dataIndex: 'lng'}
+              ],
+              sm: new Ext.grid.RowSelectionModel({
+                singleSelect: true,
+                listeners: {
+                  'rowselect': {
+                    fn: function(t, i, r){
+                      var map = Ext.getCmp('mpnl');
+                      var mrk = map.getMarkerById(r.id);
+                      map.openInfoWindow(mrk);
+                    }
+                  }
+                }
+              }),
+              bbar: new Ext.PagingToolbar({
+                store: store,
+                id: 'ptbar',
+                pageSize: store.getResultSetSize()
+              })
+            }]
+          }]
+        });
+      
+        if(!store.isReady()){
+          store.on('searchapiinitialized',function(){
+            Ext.getCmp('ptbar').pageSize = store.getResultSetSize();
+          });
+        }
+      });  
+    </script>
 </head>
 <body>
 </body>

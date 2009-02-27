@@ -4,9 +4,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Sample2: Ext.ux.google.search.*</title>
-		<link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-2.2.1/resources/css/ext-all.css" />
-		<script type="text/javascript" src="http://extjs.cachefly.net/ext-2.2.1/adapter/ext/ext-base.js"></script>
-		<script type="text/javascript" src="http://extjs.cachefly.net/ext-2.2.1/ext-all.js"> </script>
+    <link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-2.2.1/resources/css/ext-all.css" />
+    <script type="text/javascript" src="http://extjs.cachefly.net/ext-2.2.1/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="http://extjs.cachefly.net/ext-2.2.1/ext-all.js"> </script>
     <script type="text/javascript" src="../Ext.ux.google.Loader.js"></script>
 
     <script type="text/javascript" src="../search/Ext.ux.google.search.Proxy.js"></script>
@@ -14,101 +14,101 @@
     <script type="text/javascript" src="../search/Ext.ux.google.search.Store.js"></script>
 
     <script type="text/javascript">
-			Ext.onReady(function(){
-				var searchers = ['web','local','news','blog','image','video'];
-				var active = 'web';
+      Ext.onReady(function(){
+        var searchers = ['web','local','news','blog','image','video'];
+        var active = 'web';
 
-				var store = new Ext.ux.google.search.Store({
-					proxy: {
-						apiKey: 'ABQIAAAA3HEaipgCJKasbKv8S1gdbBQRwYGrJs7PTc23wXYGvCkgV6rZmhSdnrJh9Xe77AdhJyXWHiwWb8t7pA',
-						searchConfig: {
-							searcher: searchers, 
-							active: active,
-							size: 'large'
-						}
-					}
-				});
+        var store = new Ext.ux.google.search.Store({
+          proxy: {
+            apiKey: 'ABQIAAAA3HEaipgCJKasbKv8S1gdbBQRwYGrJs7PTc23wXYGvCkgV6rZmhSdnrJh9Xe77AdhJyXWHiwWb8t7pA',
+            searchConfig: {
+              searcher: searchers, 
+              active: active,
+              size: 'large'
+            }
+          }
+        });
 
-				var doSearch = function(query){
-					if(!query) return;
+        var doSearch = function(query){
+          if(!query) return;
 
-					store.load({
-						params: {
-							query: query,
-							start: 0
-						}
-					});
-				};
+          store.load({
+            params: {
+              query: query,
+              start: 0
+            }
+          });
+        };
 
-				new Ext.Viewport({
-					layout: 'border',
-					items: [{
-						region: 'north',
-						height: 40,
-						split: true,
-						layout: 'table',
-						layoutConfig: {
-							columns: 3
-						},
-						items: [{
-							xtype: 'textfield',
-							id: 'querystr',
-							enableKeyEvents: true,
-							width: 200,
-							listeners: {
-								'keypress': function(t, e){
-									if(e.getKey() == 13)
-										doSearch(Ext.getCmp('querystr').getValue());
-								}
-							}
-						},{
-							xtype: 'combo',
-							triggerAction: 'all',
-							editable: false,
-							mode: 'local',
-							value: active,
-							store: searchers,
-							listeners: {
-								'change': {
-									fn: function(t, n, o){
-										store.setActiveSearcher(n);	
-									}
-								}
-							}
-						},{
-							xtype: 'button',	
-							text: 'search',
-							handler: function(){
-								doSearch(Ext.getCmp('querystr').getValue());
-							}
-						}]
-					},{
-						region: 'center',
-						xtype: 'grid',
-						viewConfig: {
-							forceFit: true
-						},
-						store: store,
-						columns: [
-							{header: 'Title', dataIndex: 'title'},
-							{header: 'URL', dataIndex: 'url'},
-							{header: 'Contente', dataIndex: 'content'}
-						],
-						bbar: new Ext.PagingToolbar({
-							store: store,
-							id: 'ptbar',
-							pageSize: store.getResultSetSize()
-						})
-					}]
-				});
-			
-				if(!store.isReady()){
-					store.on('searchapiinitialized',function(){
-						Ext.getCmp('ptbar').pageSize = store.getResultSetSize();
-					});
-				}
-			});	
-		</script>
+        new Ext.Viewport({
+          layout: 'border',
+          items: [{
+            region: 'north',
+            height: 40,
+            split: true,
+            layout: 'table',
+            layoutConfig: {
+              columns: 3
+            },
+            items: [{
+              xtype: 'textfield',
+              id: 'querystr',
+              enableKeyEvents: true,
+              width: 200,
+              listeners: {
+                'keypress': function(t, e){
+                  if(e.getKey() == 13)
+                    doSearch(Ext.getCmp('querystr').getValue());
+                }
+              }
+            },{
+              xtype: 'combo',
+              triggerAction: 'all',
+              editable: false,
+              mode: 'local',
+              value: active,
+              store: searchers,
+              listeners: {
+                'change': {
+                  fn: function(t, n, o){
+                    store.setActiveSearcher(n);  
+                  }
+                }
+              }
+            },{
+              xtype: 'button',  
+              text: 'search',
+              handler: function(){
+                doSearch(Ext.getCmp('querystr').getValue());
+              }
+            }]
+          },{
+            region: 'center',
+            xtype: 'grid',
+            viewConfig: {
+              forceFit: true
+            },
+            store: store,
+            columns: [
+              {header: 'Title', dataIndex: 'title'},
+              {header: 'URL', dataIndex: 'url'},
+              {header: 'Contente', dataIndex: 'content'}
+            ],
+            bbar: new Ext.PagingToolbar({
+              store: store,
+              id: 'ptbar',
+              pageSize: store.getResultSetSize()
+            })
+          }]
+        });
+      
+        if(!store.isReady()){
+          store.on('searchapiinitialized',function(){
+            Ext.getCmp('ptbar').pageSize = store.getResultSetSize();
+          });
+        }
+      });  
+    </script>
 </head>
 <body>
 </body>
